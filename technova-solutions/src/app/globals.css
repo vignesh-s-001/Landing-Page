@@ -2,6 +2,7 @@
 
 @import "tailwindcss";
 
+/* ─── CSS Custom Properties ─────────────────────────────────────── */
 :root {
   --color-primary: #6366F1;
   --color-primary-dark: #4F46E5;
@@ -27,135 +28,153 @@
   --color-glass-border: rgba(99, 102, 241, 0.2);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* ─── Base Styles (inside @layer so Tailwind utilities still win) ─ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-muted);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+/* ─── Component Classes ─────────────────────────────────────────── */
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    background: var(--color-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+  }
+
+  .glass-dark {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+  }
+
+  /* Gradient mesh background */
+  .mesh-bg {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(129, 140, 248, 0.10) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(5, 150, 105, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(99, 102, 241, 0.10) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(129, 140, 248, 0.10) 0px, transparent 50%);
+  }
+
+  .dark .mesh-bg {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.20) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(5, 150, 105, 0.10) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(129, 140, 248, 0.12) 0px, transparent 50%);
+  }
+
+  /* Prose styles for blog content */
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .prose ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-invert h1,
+  .prose-invert h2,
+  .prose-invert h3 {
+    color: #ffffff;
+  }
+
+  .prose-invert p,
+  .prose-invert li {
+    color: #d1d5db;
+  }
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
+/* ─── Utility Classes ───────────────────────────────────────────── */
+@layer utilities {
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+/* ─── Keyframes (outside layers is fine) ────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-/* Glassmorphism utilities */
-.glass {
-  background: var(--color-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-glass-border);
-}
-
-.glass-dark {
-  background: var(--color-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-glass-border);
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-muted);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 3px;
-}
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* Gradient mesh background */
-.mesh-bg {
-  background-color: var(--color-background);
-  background-image: 
-    radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(129, 140, 248, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(5, 150, 105, 0.08) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(129, 140, 248, 0.1) 0px, transparent 50%);
-}
-
-.dark .mesh-bg {
-  background-color: var(--color-background);
-  background-image: 
-    radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.2) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(5, 150, 105, 0.1) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(129, 140, 248, 0.12) 0px, transparent 50%);
-}
-
+/* ─── Reduced motion ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
-
-/* Font utility */
-.font-poppins {
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Prose styles for blog content */
-.prose h1, .prose h2, .prose h3, .prose h4 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: var(--color-foreground);
-}
-
-.prose p, .prose li {
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.8;
-}
-
-.prose-invert h1, .prose-invert h2, .prose-invert h3 {
-  color: #ffffff;
-}
-
-.prose-invert p, .prose-invert li {
-  color: #d1d5db;
-}
-
-/* Line clamp utilities */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Animation for spinner */
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
