@@ -12,7 +12,7 @@ A modern, responsive company landing page for **TechNova Solutions**, a fictiona
 ## 🌟 Live Demo
 
 > **Live URL:** `[Add your deployment URL here]`  
-> **GitHub:** `[Add your repository URL here]`
+> **GitHub:** `https://github.com/vignesh-s-001/Landing-Page`
 
 ---
 
@@ -205,4 +205,4 @@ MIT License — free to use for learning and assessment purposes.
 
 ---
 
-*Built by [Your Name] as part of the Frontend Developer Technical Assessment.*
+*Built by VIGNESH SANKAR as part of the Frontend Developer Technical Assessment.*
