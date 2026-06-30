@@ -110,14 +110,6 @@ export default function ContactForm() {
     }
   };
 
-  const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name } = e.target;
-    setTouched((prev) => ({ ...prev, [name]: true }));
-    setErrors(validate(formData));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const allTouched = { name: true, email: true, phone: true, message: true };
@@ -269,7 +261,6 @@ export default function ContactForm() {
                       placeholder="John Smith"
                       value={formData.name}
                       onChange={handleChange}
-                      onBlur={handleBlur}
                       className={`${inputClass("name")} pl-10`}
                       aria-required="true"
                       aria-describedby={errors.name && touched.name ? "name-error" : undefined}
@@ -299,7 +290,6 @@ export default function ContactForm() {
                       placeholder="john@company.com"
                       value={formData.email}
                       onChange={handleChange}
-                      onBlur={handleBlur}
                       className={`${inputClass("email")} pl-10`}
                       aria-required="true"
                       aria-describedby={errors.email && touched.email ? "email-error" : undefined}
@@ -329,7 +319,6 @@ export default function ContactForm() {
                       placeholder="+1 (555) 000-0000"
                       value={formData.phone}
                       onChange={handleChange}
-                      onBlur={handleBlur}
                       className={`${inputClass("phone")} pl-10`}
                       aria-required="true"
                       aria-describedby={errors.phone && touched.phone ? "phone-error" : undefined}
@@ -359,7 +348,6 @@ export default function ContactForm() {
                       placeholder="Tell us about your project, goals, and timeline..."
                       value={formData.message}
                       onChange={handleChange}
-                      onBlur={handleBlur}
                       className={`${inputClass("message")} pl-10 resize-none`}
                       aria-required="true"
                       aria-describedby={errors.message && touched.message ? "message-error" : undefined}

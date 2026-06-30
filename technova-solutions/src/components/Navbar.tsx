@@ -8,6 +8,7 @@ import { useTheme } from "./ThemeProvider";
 import { Sun, Moon } from "lucide-react";
 
 const navLinks = [
+  { href: "#", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#blog", label: "Blog" },
