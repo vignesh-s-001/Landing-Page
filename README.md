@@ -11,7 +11,7 @@ A modern, responsive company landing page for **TechNova Solutions**, a fictiona
 
 ## 🌟 Live Demo
 
-> **Live URL:** `[Add your deployment URL here]`  
+> **Live URL:** `https://technovasolutions-sigma.vercel.app/`  
 > **GitHub:** `https://github.com/vignesh-s-001/Landing-Page`
 
 ---
