@@ -181,6 +181,7 @@ export default function Testimonials() {
           {/* Carousel controls */}
           <div className="flex items-center justify-center gap-4">
             <button
+              suppressHydrationWarning
               onClick={prev}
               id="testimonial-prev"
               aria-label="Previous testimonial"
@@ -191,6 +192,7 @@ export default function Testimonials() {
             <div className="flex gap-2">
               {testimonials.map((_, i) => (
                 <button
+                  suppressHydrationWarning
                   key={i}
                   onClick={() => setActiveIndex(i)}
                   aria-label={`Go to testimonial ${i + 1}`}
@@ -203,6 +205,7 @@ export default function Testimonials() {
               ))}
             </div>
             <button
+              suppressHydrationWarning
               onClick={next}
               id="testimonial-next"
               aria-label="Next testimonial"

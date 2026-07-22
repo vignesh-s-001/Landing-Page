@@ -126,10 +126,9 @@ export default function ContactForm() {
   };
 
   const inputClass = (field: keyof FormErrors) =>
-    `w-full px-4 py-3.5 rounded-xl glass border transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${
-      errors[field] && touched[field]
-        ? "border-red-400 dark:border-red-500 bg-red-50/30 dark:bg-red-500/5"
-        : "border-indigo-200/50 dark:border-indigo-500/20 hover:border-indigo-400 dark:hover:border-indigo-500/50"
+    `w-full box-border px-4 py-3.5 rounded-xl glass border transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent ${errors[field] && touched[field]
+      ? "border-red-400 dark:border-red-500 bg-red-50/30 dark:bg-red-500/5"
+      : "border-indigo-200/50 dark:border-indigo-500/20 hover:border-indigo-400 dark:hover:border-indigo-500/50"
     }`;
 
   return (
@@ -181,11 +180,11 @@ export default function ContactForm() {
                 >
                   <item.icon className="w-6 h-6 text-white" />
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-xs font-semibold text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-1">
                     {item.label}
                   </div>
-                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white break-all">
                     {item.value}
                   </div>
                 </div>
@@ -223,7 +222,7 @@ export default function ContactForm() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass rounded-3xl p-12 text-center h-full flex flex-col items-center justify-center"
+                className="glass rounded-3xl p-8 sm:p-12 text-center h-full flex flex-col items-center justify-center"
               >
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center mb-6 shadow-xl shadow-emerald-500/30">
                   <CheckCircle2 className="w-10 h-10 text-white" />
@@ -238,9 +237,10 @@ export default function ContactForm() {
               </motion.div>
             ) : (
               <form
+                suppressHydrationWarning
                 onSubmit={handleSubmit}
                 noValidate
-                className="glass rounded-3xl p-8 space-y-5"
+                className="glass rounded-3xl p-6 sm:p-8 space-y-5"
                 id="contact-form"
                 aria-label="Contact form"
               >
@@ -255,6 +255,7 @@ export default function ContactForm() {
                   <div className="relative">
                     <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
+                      suppressHydrationWarning
                       id="contact-name"
                       name="name"
                       type="text"
@@ -284,6 +285,7 @@ export default function ContactForm() {
                   <div className="relative">
                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
+                      suppressHydrationWarning
                       id="contact-email"
                       name="email"
                       type="email"
@@ -313,6 +315,7 @@ export default function ContactForm() {
                   <div className="relative">
                     <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
+                      suppressHydrationWarning
                       id="contact-phone"
                       name="phone"
                       type="tel"
@@ -342,6 +345,7 @@ export default function ContactForm() {
                   <div className="relative">
                     <MessageSquare className="absolute left-3.5 top-4 w-4 h-4 text-gray-400" />
                     <textarea
+                      suppressHydrationWarning
                       id="contact-message"
                       name="message"
                       rows={5}
@@ -362,6 +366,7 @@ export default function ContactForm() {
 
                 {/* Submit */}
                 <button
+                  suppressHydrationWarning
                   type="submit"
                   id="contact-submit"
                   disabled={submitting}
